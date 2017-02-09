@@ -1,0 +1,17 @@
+{
+  "name": "Trial Balance to JSON Tool",
+  "version": "2.0.4",
+  "homepage": "",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "authors": [
+    "Sean Darcy <Darcys22@gmail.com>"
+  ],
+  "description": "Takes a trial balance in excel and converts it into JSON",
+  "main": "index.html",
+  "keywords": [
+  ],
+  "license": "GPLv3"
+}
