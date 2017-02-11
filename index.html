@@ -5,6 +5,7 @@
 	<meta name="viewport"
 		 content="width=device-width, initial-scale=1, user-scalable=yes">
 	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/pikaday.css">
   <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 </head>
@@ -30,6 +31,14 @@
 	</div>
   <div class="help-block"></div>
 	<div class="row">
+			<div class="col-md-2"></div>
+			<div id="dateselector" class="col-md-7 hidden">
+        Trial Balance Date: 
+        <input type="text" id="datepicker" class="text">
+      </div>
+	</div>
+  <div class="help-block"></div>
+	<div class="row">
 			<div class="col-md-1"></div>
 			<div class="col-md-10">
         <div class="panel panel-default hidden" id="panel">
@@ -40,7 +49,30 @@
 			<div class="col-md-1"></div>
 	</div>
 </div>
+
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm">Small modal</button>
+
+<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+      <form class="form-inline">
+			<div class = "modal-body">
+				<div class="form-group">
+					<label for="InputName">Name</label>
+					<input type="text" class="form-control" id="InputName">
+				</div>
+        <div class="help-block"></div>
+        <div class="modal-footer">
+				<button type="submit" class="btn btn-default">Insert Tag</button>
+				</div>
+			</form>
+    </div>
+    </div>
+  </div>
+</div>
+
 <a id="downloadAnchorElem" style="display:none"></a>
+<script lang="javascript" src="js/pikaday.js"></script>
 <script type="text/javascript" src="js/main.js"></script> 
 <script lang="javascript" src="js/xlsx.core.min.js"></script>
 <script lang="javascript" src="js/papaparse.min.js"></script>

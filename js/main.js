@@ -61,6 +61,7 @@ function handleFiles(event) {
     tbl.appendChild(tbdy);
     body.appendChild(tbl);
     $("#panel").removeClass('hidden');
+    $("#dateselector").removeClass('hidden');
     $('ul.dropdown-menu li a').click(function (e) {
       var $div = $(this).parent().parent().parent(); 
       var $btn = $div.find('button');
@@ -90,7 +91,7 @@ function convert() {
     return window.rows[window.csv.data.indexOf(x)]
   });
 
-  var jsontb = {"Prot":"Journal","Txn":{"Payee":"Import TB:","Date":"2016-6-30","Postings":[]}}
+  var jsontb = {"Prot":"Journal","Txn":{"Payee":"Import TB:","Date":window.userDate,"Postings":[]}}
 
 //{"Account":"Asset.Cash","Amt":{"Value":"1000","Cur":"AUD"}}
 
@@ -148,5 +149,13 @@ function loadBinaryFile(path, success) {
 }
 
 function main() {
+  window.userDate = new Date;
+  var picker = new Pikaday({ field: document.getElementById('datepicker'),
+      onSelect: function(date) {
+          window.userDate = picker.toString();
+      },
+    defaultDate: new Date(),
+    setDefaultDate: true
+  });
 }
 main();
