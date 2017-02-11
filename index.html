@@ -31,61 +31,9 @@
 	<div class="row">
 			<div class="col-md-1"></div>
 			<div class="col-md-10">
-        <div class="panel panel-default">
+        <div class="panel panel-default hidden" id="panel">
 					<!-- Default panel contents -->
-					<div class="panel-heading">Column Mapper</div>
-
-					<!-- Table -->
-					<table class="table">
-            <thead>
-              <tr>
-                <th></th>
-                <th class="dropdown">
-                    <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          Map Column <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu">
-                      <li><a href="#">Account Description</a></li>
-                      <li><a href="#">Account Number</a></li>
-                      <li><a href="#">Other</a></li>
-                      <li role="separator" class="divider"></li>
-                      <li><a href="#">Debits</a></li>
-                      <li><a href="#">Credits</a></li>
-                      <li><a href="#">Negative Credits</a></li>
-                      <li><a href="#">Debits & Credits</a></li>
-                    </ul>
-                </th>
-                <th>
-                  <button type="button" class="btn btn-default btn-sm">
-                    Map Column<span class="caret"></span>
-                  </button>
-                </th>
-                <th>
-                  <button type="button" class="btn btn-default btn-sm">
-                    Map Column<span class="caret"></span>
-                  </button>
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>
-                  <input type="checkbox" name="" value="checked" />
-                </td>
-                <td>Jill</td>
-                <td>Smith</td>
-                <td>50</td>
-              </tr>
-              <tr>
-                <td>
-                  <input type="checkbox" name="" value="checked" />
-                </td>
-                <td>Eve</td>
-                <td>Jackson</td>
-                <td>94</td>
-              </tr>
-            </tbody>
-					</table>
+					<div class="panel-heading" id="mappertable" >Column Mapper</div>
 				</div>
       </div>
 			<div class="col-md-1"></div>
@@ -93,6 +41,7 @@
 </div>
 <script type="text/javascript" src="js/main.js"></script> 
 <script lang="javascript" src="js/xlsx.core.min.js"></script>
+<script lang="javascript" src="js/papaparse.min.js"></script>
 </body>
 </html>
      
