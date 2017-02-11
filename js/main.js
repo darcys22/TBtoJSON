@@ -27,7 +27,7 @@ function handleFiles(event) {
                       <li><a href="#" id="">Ignore Column</a></li>
                       <li><a href="#" id="Account">Account Description</a></li>
                       <li><a href="#" id="Account_Number">Account Number</a></li>
-                      <li><a href="#" >Other</a></li>
+                      <li><a href="#" id="other">Other</a></li>
                       <li role="separator" class="divider"></li>
                       <li><a href="#" id="debit">Debits</a></li>
                       <li><a href="#" id="credit">Credits</a></li>
@@ -82,8 +82,13 @@ function toggleRow(path) {
   window.rows[path] = !window.rows[path];
 }
 
-function addColumn(column, desc) {
-  window.columns[parseInt(column.slice(1))] = desc;
+function addColumn(column = window.column, desc) {
+  if (desc == "other") {
+    window.column = column;
+    $('#otherModal').modal('show');
+  } else {
+    window.columns[parseInt(column.slice(1))] = desc;
+  }
 }
 function convert() {
   var balance = 0;
