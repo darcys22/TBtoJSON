@@ -21,9 +21,10 @@
               <input id="my-file-selector" type="file" style="display:none;" onchange="handleFiles(event)">
               Upload
         </label>
-        <button type="button" class="btn btn-default btn-lg disabled">
+        <button type="button" id="convert" class="btn btn-default btn-lg disabled">
            Convert
         </button>
+        <span class='label label-info' id="tbbalance-info"></span>
 			</div>
 			<div class="col-md-3"></div>
 	</div>
@@ -39,6 +40,7 @@
 			<div class="col-md-1"></div>
 	</div>
 </div>
+<a id="downloadAnchorElem" style="display:none"></a>
 <script type="text/javascript" src="js/main.js"></script> 
 <script lang="javascript" src="js/xlsx.core.min.js"></script>
 <script lang="javascript" src="js/papaparse.min.js"></script>
