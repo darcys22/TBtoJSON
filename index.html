@@ -53,7 +53,6 @@
 <div class="modal fade bs-example-modal-sm" id="otherModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
   <div class="modal-dialog modal-sm" role="document">
     <div class="modal-content">
-      <form class="form-inline" action="javascript:addColumn(InputName.value)">
 			<div class = "modal-body">
 				<div class="form-group">
 					<label for="InputName">Name</label>
@@ -61,9 +60,8 @@
 				</div>
         <div class="help-block"></div>
         <div class="modal-footer">
-				<button type="submit" class="btn btn-primary">Insert Tag</button>
+				<button data-dismiss="modal" class="btn btn-primary" onclick="addColumn()" >Insert Tag</button>
 				</div>
-			</form>
     </div>
     </div>
   </div>

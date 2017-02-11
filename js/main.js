@@ -6,7 +6,7 @@ function handleFiles(event) {
     window.csv = Papa.parse(XLSX.utils.sheet_to_csv(workbook.Sheets[workbook.SheetNames[0]]));
     var body = document.getElementById("mappertable");
     var tbl = document.createElement('table');
-    tbl.className = 'table';
+    tbl.className = 'table table-condensed';
     var tbdy = document.createElement('tbody');
     var thead = document.createElement('thead');
     var th = document.createElement('th');
@@ -73,7 +73,6 @@ function handleFiles(event) {
     }); 
     var convertButton= document.getElementById("convert");
     convertButton.classList.remove('disabled');
-    convertButton.classList.remove('disabled');
     convertButton.addEventListener("click", function(){convert()}, false);
 	});
 }
@@ -82,12 +81,12 @@ function toggleRow(path) {
   window.rows[path] = !window.rows[path];
 }
 
-function addColumn(column = window.column, desc) {
+function addColumn(column = window.column, desc = $('#InputName').val()) {
   if (desc == "other") {
     window.column = column;
     $('#otherModal').modal('show');
   } else {
-    window.columns[parseInt(column.slice(1))] = desc;
+    window.columns[parseFloat(column.slice(1))] = desc;
   }
 }
 function convert() {
@@ -96,29 +95,28 @@ function convert() {
     return window.rows[window.csv.data.indexOf(x)]
   });
 
-  var jsontb = {"Prot":"Journal","Txn":{"Payee":"Import TB:","Date":window.userDate,"Postings":[]}}
+  var jsontb = {"Prot":"Journal","Txn":{"Payee":"Import TB","Date":window.userDate,"Postings":[]}}
 
 //{"Account":"Asset.Cash","Amt":{"Value":"1000","Cur":"AUD"}}
 
   for (var row in filtered) {
     var posting = {};
+    var value = 0.00;
     for (i = 0; i < filtered[row].length; i++) {
-      var value = 0;
-      console.log(window.columns[i]);
       switch(window.columns[i]) {
           case "":
               break;
           case "debit":
-              value += parseInt(filtered[row][i]); 
+              value += (Math.round((parseFloat(filtered[row][i].replace(/,/g,'')) + 0.00001) * 100)/100 || 0); 
               break;
           case "credit":
-              value -= parseInt(filtered[row][i]);
+              value -= (Math.round((parseFloat(filtered[row][i].replace(/,/g,'')) + 0.00001) * 100)/100 || 0); 
               break;
           case "negcredit":
-              value += parseInt(filtered[row][i]);
+              value += (Math.round((parseFloat(filtered[row][i].replace(/,/g,'')) + 0.00001) * 100)/100 || 0); 
               break;
           case "value":
-              value = parseInt(filtered[row][i]);
+              value = (Math.round((parseFloat(filtered[row][i].replace(/,/g,'')) + 0.00001) * 100)/100 || 0); 
               break;
           default:
               posting[window.columns[i]] = filtered[row][i];
@@ -128,7 +126,7 @@ function convert() {
     posting["Amt"] = {"Value": value, "Cur":"AUD"}
     jsontb["Txn"]["Postings"].push(posting)
   }
-  $('#tbbalance-info').html("Balance: " + balance);
+  $('#tbbalance-info').html("Balance: " + (Math.round(balance+0.00001)*100/100));
 
   var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(jsontb));
   var dlAnchorElem = document.getElementById('downloadAnchorElem');
@@ -137,8 +135,6 @@ function convert() {
   dlAnchorElem.click();
 
 
-  console.log(jsontb);
-  console.log(balance);
 }
 
 function loadBinaryFile(path, success) {
@@ -154,7 +150,7 @@ function loadBinaryFile(path, success) {
 }
 
 function main() {
-  window.userDate = new Date;
+  window.userDate = "Thu Jun 30 2016";
   var picker = new Pikaday({ field: document.getElementById('datepicker'),
       onSelect: function(date) {
           window.userDate = picker.toString();
